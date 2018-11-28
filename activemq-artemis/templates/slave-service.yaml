@@ -16,6 +16,9 @@ spec:
   - name: core
     port: 61616
     targetPort: core
+  - name: stomp
+    port: 61613
+    targetPort: 61613
   - name: amqp
     port: 5672
     targetPort: amqp

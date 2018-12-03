@@ -71,6 +71,12 @@ resources:
 # Probably this is only useful for minikube environments and CI
 loadbalancer:
   enabled: true
+  annotations:
+    # Exclude unready slave nodes from DNS
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "false"
+    service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+  # Orginally there is ClusterIP instead of None, but aws dont tolerate them
+  sessionAffinity: None
 
 ## Prometheus Exporters / Metrics
 ##

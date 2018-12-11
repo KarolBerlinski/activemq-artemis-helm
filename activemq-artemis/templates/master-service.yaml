@@ -9,28 +9,23 @@ metadata:
 {{ include "artemis.labels.standard" . | indent 4 }}
     component: artemis-node
 spec:
-  type: NodePort
   ports:
   - name: http
     port: 8161
     targetPort: http
-    nodePort: 30161
   - name: core
     port: 61616
     targetPort: core
-    nodePort: 30616
   - name: stomp
     port: 61613
     targetPort: 61613
-    nodePort: 30613
   - name: amqp
     port: 5672
     targetPort: amqp
-    nodePort: 30672
   - name: jmx
     port: 9494
     targetPort: jmxexporter
-    nodePort: 30494
+  clusterIP: None
   selector:
     app: {{ template "artemis.name" . }}
     release: {{ .Release.Name | quote }}
